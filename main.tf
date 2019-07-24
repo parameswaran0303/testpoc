@@ -17,7 +17,7 @@ environment = "PoC"
 # Terraform Template for Creation of AKS
 resource "azurerm_kubernetes_cluster" "CICD" {
 name = "CICD-AKS"
-location = "southeastasia" 
+location = "southeastasia"
 resource_group_name = "CI-CD01"
 dns_prefix = "cicd-aks01"
 
