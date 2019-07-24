@@ -32,7 +32,6 @@ client_id = "${var.azure_client_id}"
 client_secret = "${var.azure_client_secret}"
 }
 }
-
 # Terraform Template for Creation of Application Gateway
 resource "azurerm_virtual_network" "test" {
 name = "cicdvnet"
