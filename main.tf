@@ -2,10 +2,10 @@ provider "azurerm" {
   # whilst the `version` attribute is optional, we recommend pinning to a given version of the Provider
   version = "=1.28.0"
 
-subscription_id = "38a48eb9-12be-4a21-91d8-d92ce3ad56a4"
+subscription_id = "b0c0b681-dd3c-4c5b-96a7-088b02419005"
 client_id = "${var.azure_client_id}"
 client_secret = "${var.azure_client_secret}"
-tenant_id = "776ff747-970b-4a0b-96b6-9e248a307707"
+tenant_id = "247f9209-edf3-4637-8c0e-83660e4eab8e"
 }
 
 
