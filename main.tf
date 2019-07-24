@@ -2,35 +2,35 @@ provider "azurerm" {
 subscription_id = "b0c0b681-dd3c-4c5b-96a7-088b02419005"
 client_id = "${var.azure_client_id}"
 client_secret = "${var.azure_client_secret}"
-tenant_id = "247f9209-edf3-4637-8c0e-83660e4eab8e"
+tenant_id = "247f9209-edf3-4637-8c0e-83660e4eab8e"
 }
 
 
 resource "azurerm_resource_group" "cicd01" {
-name = "CI-CD01"
-location = "southeastasia"
+name = "CI-CD01"
+location = "southeastasia"
 
-tags = {
-environment = "PoC"
+tags = {
+environment = "PoC"
 }
 }
 # Terraform Template for Creation of AKS
 resource "azurerm_kubernetes_cluster" "CICD" {
-name = "CICD-AKS"
-location = "southeastasia" 
-resource_group_name = "CI-CD01"
-dns_prefix = "cicd-aks01"
+name = "CICD-AKS"
+location = "southeastasia" 
+resource_group_name = "CI-CD01"
+dns_prefix = "cicd-aks01"
 
 agent_pool_profile {
-name = "default"
-count = 1
-vm_size = "Standard_D1_v2"
-os_type = "Linux"
-os_disk_size_gb = 30
+name = "default"
+count  = 1
+vm_size = "Standard_D1_v2"
+os_type = "Linux"
+os_disk_size_gb = 30
 }
 service_principal {
-client_id = "${var.azure_client_id}"
-client_secret = "${var.azure_client_secret}"
+client_id = "${var.azure_client_id}"
+client_secret = "${var.azure_client_secret}"
 }
 }
 
