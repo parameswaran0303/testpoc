@@ -1,5 +1,5 @@
 provider "azurerm" {
-subscription_id = "b0c0b681-dd3c-4c5b-96a7-088b02419005"
+subscription_id = "b0c0b681-dd3c-4c5b-96a7-088b02419005"
 client_id = "${var.azure_client_id}"
 client_secret = "${var.azure_client_secret}"
 tenant_id = "247f9209-edf3-4637-8c0e-83660e4eab8e"
