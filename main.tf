@@ -42,7 +42,7 @@ location = "southeastasia"
 address_space = ["10.254.0.0/16"]
 }
 
-resource "azurerm_subnet" "frontend" {
+resource "azurerm_subnet" "frontend" {
 name = "frontend"
 resource_group_name = "ci-cd01"
 virtual_network_name = "${azurerm_virtual_network.test.name}"
