@@ -5,7 +5,6 @@ client_secret = "${var.azure_client_secret}"
 tenant_id = "247f9209-edf3-4637-8c0e-83660e4eab8e"
 }
 
-
 resource "azurerm_resource_group" "cicd01" {
 name = "CI-CD01"
 location = "southeastasia"
