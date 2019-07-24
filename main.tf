@@ -37,67 +37,67 @@ client_secret = "${var.azure_client_secret}"
 # Terraform Template for Creation of Application Gateway
 resource "azurerm_virtual_network" "test" {
 name = "cicdvnet"
-resource_group_name = "ci-cd01"
-location = "southeastasia"
-address_space = ["10.254.0.0/16"]
+resource_group_name = "ci-cd01"
+location = "southeastasia"
+address_space = ["10.254.0.0/16"]
 }
 
-resource "azurerm_subnet" "frontend" {
-name = "frontend"
-resource_group_name = "ci-cd01"
-virtual_network_name = "${azurerm_virtual_network.test.name}"
-address_prefix = "10.254.0.0/24"
+resource "azurerm_subnet" "frontend" {
+name = "frontend"
+resource_group_name = "ci-cd01"
+virtual_network_name = "${azurerm_virtual_network.test.name}"
+address_prefix = "10.254.0.0/24"
 }
 
-resource "azurerm_subnet" "backend" {
-name = "backend"
-resource_group_name = "ci-cd01"
-virtual_network_name = "${azurerm_virtual_network.test.name}"
-address_prefix = "10.254.2.0/24"
+resource "azurerm_subnet" "backend" {
+name = "backend"
+resource_group_name = "ci-cd01"
+virtual_network_name = "${azurerm_virtual_network.test.name}"
+address_prefix = "10.254.2.0/24"
 }
 
-resource "azurerm_public_ip" "test" {
-name = "ci-cd01-pip"
-resource_group_name = "ci-cd01"
-location = "southeastasia"
-allocation_method = "Dynamic"
+resource "azurerm_public_ip" "test" {
+name = "ci-cd01-pip"
+resource_group_name = "ci-cd01"
+location = "southeastasia"
+allocation_method = "Dynamic"
 }
 
 # since these variables are re-used - a locals block makes this more maintainable
-locals {
-backend_address_pool_name = "${azurerm_virtual_network.test.name}-beap"
-frontend_port_name = "${azurerm_virtual_network.test.name}-feport"
-frontend_ip_configuration_name = "${azurerm_virtual_network.test.name}-feip"
-http_setting_name = "${azurerm_virtual_network.test.name}-be-htst"
-listener_name = "${azurerm_virtual_network.test.name}-httplstn"
-request_routing_rule_name = "${azurerm_virtual_network.test.name}-rqrt"
-redirect_configuration_name = "${azurerm_virtual_network.test.name}-rdrcfg"
+locals {
+backend_address_pool_name = "${azurerm_virtual_network.test.name}-beap"
+frontend_port_name = "${azurerm_virtual_network.test.name}-feport"
+frontend_ip_configuration_name = "${azurerm_virtual_network.test.name}-feip"
+http_setting_name = "${azurerm_virtual_network.test.name}-be-htst"
+listener_name = "${azurerm_virtual_network.test.name}-httplstn"
+request_routing_rule_name = "${azurerm_virtual_network.test.name}-rqrt"
+redirect_configuration_name = "${azurerm_virtual_network.test.name}-rdrcfg"
 }
 
-resource "azurerm_application_gateway" "network" {
-name = "ci-cd01-appgateway"
-resource_group_name = "ci-cd01"
-location = "southeastasia"
+resource "azurerm_application_gateway" "network" {
+name = "ci-cd01-appgateway"
+resource_group_name = "ci-cd01"
+location = "southeastasia"
 
-sku {
-name = "Standard_Small"
-tier = "Standard"
-capacity = 2
+sku {
+name = "Standard_Small"
+tier = "Standard"
+capacity = 2
 } 
  
-gateway_ip_configuration {
-name = "my-gateway-ip-configuration"
-subnet_id = "${azurerm_subnet.frontend.id}"
+gateway_ip_configuration {
+name = "my-gateway-ip-configuration"
+subnet_id = "${azurerm_subnet.frontend.id}"
 }
 
-frontend_port {
-name = "${local.frontend_port_name}"
-port = 80
+frontend_port {
+name = "${local.frontend_port_name}"
+port = 80
 }
 
-frontend_ip_configuration {
-name = "${local.frontend_ip_configuration_name}"
-public_ip_address_id = "${azurerm_public_ip.test.id}"
+frontend_ip_configuration {
+name = "${local.frontend_ip_configuration_name}"
+public_ip_address_id = "${azurerm_public_ip.test.id}"
 }
 
 backend_address_pool {
