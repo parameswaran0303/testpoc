@@ -74,7 +74,7 @@ request_routing_rule_name = "${azurerm_virtual_network.test.name}-rqrt"
 redirect_configuration_name = "${azurerm_virtual_network.test.name}-rdrcfg"
 }
 
-resource "azurerm_application_gateway" "network" {
+resource "azurerm_application_gateway" "network" {
 name = "ci-cd01-appgateway"
 resource_group_name = "ci-cd01"
 location = "southeastasia"
