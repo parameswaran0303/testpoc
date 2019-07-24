@@ -21,7 +21,7 @@ location = "southeastasia"
 resource_group_name = "CI-CD01"
 dns_prefix = "cicd-aks01"
 
-agent_pool_profile {
+agent_pool_profile {
 name = "default"
 count  = 1
 vm_size = "Standard_D1_v2"
