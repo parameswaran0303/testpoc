@@ -15,7 +15,7 @@ environment = "PoC"
 }
 }
 # Terraform Template for Creation of AKS
-resource "azurerm_kubernetes_cluster" "CICD" {
+resource "azurerm_kubernetes_cluster" "CICD" {
 name = "CICD-AKS"
 location = "southeastasia" 
 resource_group_name = "CI-CD01"
@@ -100,49 +100,49 @@ name = "${local.frontend_ip_configuration_name}"
 public_ip_address_id = "${azurerm_public_ip.test.id}"
 }
 
-backend_address_pool {
-name = "${local.backend_address_pool_name}"
+backend_address_pool {
+name = "${local.backend_address_pool_name}"
 }
 
-backend_http_settings {
-name = "${local.http_setting_name}"
-cookie_based_affinity = "Disabled"
-path = "/path1/"
-port = 80
-protocol = "Http"
-request_timeout = 1
+backend_http_settings {
+name = "${local.http_setting_name}"
+cookie_based_affinity = "Disabled"
+path = "/path1/"
+port = 80
+protocol = "Http"
+request_timeout = 1
 }
 
-http_listener {
-name = "${local.listener_name}"
-frontend_ip_configuration_name = "${local.frontend_ip_configuration_name}"
-frontend_port_name = "${local.frontend_port_name}"
-protocol = "Http"
+http_listener {
+name = "${local.listener_name}"
+frontend_ip_configuration_name = "${local.frontend_ip_configuration_name}"
+frontend_port_name = "${local.frontend_port_name}"
+protocol = "Http"
 }
 
-request_routing_rule {
-name = "${local.request_routing_rule_name}"
-rule_type = "Basic"
-http_listener_name = "${local.listener_name}"
-backend_address_pool_name = "${local.backend_address_pool_name}"
-backend_http_settings_name = "${local.http_setting_name}"
+request_routing_rule {
+name = "${local.request_routing_rule_name}"
+rule_type = "Basic"
+http_listener_name = "${local.listener_name}"
+backend_address_pool_name = "${local.backend_address_pool_name}"
+backend_http_settings_name = "${local.http_setting_name}"
 }
 }
 # Provision Container registry
-resource "azurerm_container_registry" "acr" {
-name = "cicdreg"
-resource_group_name = "ci-cd01"
-location = "southeastasia"
-sku = "Basic"
-admin_enabled = false
+resource "azurerm_container_registry" "acr" {
+name = "cicdreg"
+resource_group_name = "ci-cd01"
+location = "southeastasia"
+sku = "Basic"
+admin_enabled = false
 }
 #Provision storage account
 
-resource "azurerm_storage_account" "cicdstg" {
-name = "cicd01"
-resource_group_name = "ci-cd01"
-location = "southeastasia"
-account_tier = "Standard"
-account_replication_type = "ZRS"
+resource "azurerm_storage_account" "cicdstg" {
+name = "cicd01"
+resource_group_name = "ci-cd01"
+location = "southeastasia"
+account_tier = "Standard"
+account_replication_type = "ZRS"
 
 } 
