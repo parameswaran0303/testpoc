@@ -84,7 +84,7 @@ name = "Standard_Small"
 tier = "Standard"
 capacity = 2
 }
-
+ 
 gateway_ip_configuration {
 name = "my-gateway-ip-configuration"
 subnet_id = "${azurerm_subnet.frontend.id}"
