@@ -6,7 +6,7 @@ tenant_id = "247f9209-edf3-4637-8c0e-83660e4eab8e"
 }
 
 
-resource "azurerm_resource_group" "cicd01" {
+resource "azurerm_resource_group" "cicd01" {
 name = "CI-CD01"
 location = "southeastasia"
 
@@ -15,7 +15,7 @@ environment = "PoC"
 }
 }
 # Terraform Template for Creation of AKS
-resource "azurerm_kubernetes_cluster" "CICD" {
+resource "azurerm_kubernetes_cluster" "CICD" {
 name = "CICD-AKS"
 location = "southeastasia" 
 resource_group_name = "CI-CD01"
@@ -28,15 +28,15 @@ vm_size = "Standard_D1_v2"
 os_type = "Linux"
 os_disk_size_gb = 30
 }
-service_principal {
+service_principal {
 client_id = "${var.azure_client_id}"
 client_secret = "${var.azure_client_secret}"
 }
 }
 
 # Terraform Template for Creation of Application Gateway
-resource "azurerm_virtual_network" "test" {
-name = "cicdvnet"
+resource "azurerm_virtual_network" "test" {
+name = "cicdvnet"
 resource_group_name = "ci-cd01"
 location = "southeastasia"
 address_space = ["10.254.0.0/16"]
