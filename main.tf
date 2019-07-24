@@ -56,7 +56,7 @@ virtual_network_name = "${azurerm_virtual_network.test.name}"
 address_prefix = "10.254.2.0/24"
 }
 
-resource "azurerm_public_ip" "test" {
+resource "azurerm_public_ip" "test" {
 name = "ci-cd01-pip"
 resource_group_name = "ci-cd01"
 location = "southeastasia"
