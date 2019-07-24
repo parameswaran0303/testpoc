@@ -1,5 +1,5 @@
 // Jenkinsfile
-String credentialsId = 'azurecred'
+String credentialsId = '26d4b673-76dc-48fa-90eb-d9ac66853bfb'
 
 try {
   stage('checkout') {
@@ -12,7 +12,7 @@ try {
   // Run terraform init
   stage('init') {
    node {
-    withCredentials([azureServicePrincipal(credentialsId: 'azurecred',
+    withCredentials([azureServicePrincipal(credentialsId: '26d4b673-76dc-48fa-90eb-d9ac66853bfb',
                                     subscriptionIdVariable: 'SUBS_ID',
                                     clientIdVariable: 'CLIENT_ID',
                                     clientSecretVariable: 'CLIENT_SECRET',
@@ -29,7 +29,7 @@ try {
   // Run terraform plan
   stage('plan') {
     node {
-    withCredentials([azureServicePrincipal(credentialsId: 'azurecred',
+    withCredentials([azureServicePrincipal(credentialsId: '26d4b673-76dc-48fa-90eb-d9ac66853bfb',
                                     subscriptionIdVariable: 'SUBS_ID',
                                     clientIdVariable: 'CLIENT_ID',
                                     clientSecretVariable: 'CLIENT_SECRET',
@@ -45,7 +45,7 @@ try {
     // Run terraform apply
     stage('apply') {
       node {
-       withCredentials([azureServicePrincipal(credentialsId: 'azurecred',
+       withCredentials([azureServicePrincipal(credentialsId: '26d4b673-76dc-48fa-90eb-d9ac66853bfb',
                                     subscriptionIdVariable: 'SUBS_ID',
                                     clientIdVariable: 'CLIENT_ID',
                                     clientSecretVariable: 'CLIENT_SECRET',
@@ -60,7 +60,7 @@ try {
     // Run terraform show
     stage('show') {
       node {
-         withCredentials([azureServicePrincipal(credentialsId: 'azurecred',
+         withCredentials([azureServicePrincipal(credentialsId: '26d4b673-76dc-48fa-90eb-d9ac66853bfb',
                                     subscriptionIdVariable: 'SUBS_ID',
                                     clientIdVariable: 'CLIENT_ID',
                                     clientSecretVariable: 'CLIENT_SECRET',
